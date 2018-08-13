@@ -1,0 +1,94 @@
+﻿@model MVCStars.Models.Star
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="heading-font">
+    <h2>Edit</h2>
+</div>
+<hr />
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <img src="@Model.ImageUrl" class="" height="200" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageUrl" class="control-label col-md-4">Image URL</label>
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.ImageUrl, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger col-md-4" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Type, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.Type, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                @Html.ValidationMessageFor(model => model.Type, null, new { @class = "text-danger col-md-4" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="SolarMass" class="col-md-4 control-label">Solar Mass</label>
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.SolarMass, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                @Html.ValidationMessageFor(model => model.SolarMass, null, new { @class = "text-danger col-md-4" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ApparentMagnitude" class="col-md-4 control-label">Apparent Magnitude</label>
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.ApparentMagnitude, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Info" class="col-md-4 control-label">Description</label>
+            <div class="col-md-8">
+                @Html.TextAreaFor(m => m.Info, new { @class = "form-control col-md-8", rows = 10 })
+                @Html.ValidationMessageFor(model => model.Info, null, new { @class = "text-danger col-md-4" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Info" class="col-md-4 control-label">Added By</label>
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.AddedBy, new { htmlAttributes = new { @class = "form-control col-md-8" } })
+                @Html.ValidationMessageFor(model => model.AddedBy, null, new { @class = "text-danger col-md-4" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Save Changes" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+}
+
+    <br />
+
+<div class="text-center">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default btn-sm" }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+</div>
