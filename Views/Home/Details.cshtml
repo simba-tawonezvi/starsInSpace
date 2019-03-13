@@ -1,0 +1,50 @@
+﻿@model MVCStars.Models.Star
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="box">
+
+    <div class="text-center"><h3>@Html.DisplayFor(m => m.Name)</h3></div>
+    <hr />
+    <div class="col-md-4 text-center">
+        <img src="@Model.ImageUrl" height="200" />
+    </div>
+
+    <div class="col-md-8">
+        <dl class="dl-horizontal">
+
+            <dt>@Html.DisplayNameFor(m => m.Type)</dt>
+            <dd>@Html.DisplayFor(m => m.Type)</dd>
+            <br />
+            <dt>Solar Mass</dt>
+            <dd>@Html.DisplayFor(m => m.SolarMass)</dd>
+            <br />
+            <dt>Apparent Magnitude</dt>
+            <dd>@Html.DisplayFor(m => m.ApparentMagnitude)</dd>
+            <br />
+            <dt>Information</dt>
+            <dd>@Html.DisplayFor(m => m.Info)</dd>
+            <br />
+            <dt>Dislikes</dt>
+            <dd>@Html.DisplayFor(m => m.DislikeCount)</dd>
+            <br />
+            <dt>Likes</dt>
+            <dd>@Html.DisplayFor(m => m.LikeCount)</dd>
+            <br />
+            <dt>Added By</dt>
+            <dd>@Html.DisplayFor(m => m.AddedBy)</dd>
+            <br />
+        </dl>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default btn-sm" }) |
+    @Html.ActionLink("Edit Star", "Edit", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+</div>

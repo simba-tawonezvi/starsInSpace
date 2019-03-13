@@ -1,0 +1,70 @@
+﻿@model MVCStars.Models.Star
+
+
+@*table data*@
+
+    <tr class="table-background" id="@Model.Id">
+        <td>
+            <a href="@Url.Action("Details", new { id = Model.Id })">
+                <img src="@Url.Content(Model.ImageUrl)" height="100" />
+            </a>
+        </td>
+
+        <td>
+            <a class="tableName" href="@Url.Action("Details", new {id = Model.Id})">
+                @Html.DisplayFor(model => Model.Name)
+            </a>
+
+        </td>
+
+        <td>@Html.DisplayFor(model => Model.Type)</td>
+        <td>@Html.DisplayFor(model => Model.SolarMass)</td>
+        <td>
+            @*like/dislike button and corresponging amounts which update without refreshing the page.*@
+            <div class="text-center col-sm-6">
+
+                @using (Ajax.BeginForm(
+                    actionName: "Like",
+                    controllerName: "Home",
+                    routeValues: new { id = Model.Id },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        UpdateTargetId = Model.Id.ToString(),
+                        InsertionMode = InsertionMode.ReplaceWith
+                    }
+                    ))
+                {
+                    <input  type="submit" value="&#xf164" class="fa fa-input btn btn-default">
+                    @Html.DisplayFor(model => Model.LikeCount)
+                }
+
+            </div>
+            <div class="text-center col-sm-6">                                
+
+                @using (Ajax.BeginForm(
+                    actionName: "Dislike",
+                    controllerName: "Home",
+                    routeValues: new { id = Model.Id },
+                    ajaxOptions: new AjaxOptions
+                    {
+                        UpdateTargetId = Model.Id.ToString(),
+                        InsertionMode = InsertionMode.ReplaceWith
+                    }
+                    ))
+                {
+                    <input  type="submit" value="&#xf165" class="fa fa-input btn btn-default">
+                    @Html.DisplayFor(model => Model.DislikeCount)
+                }
+
+            </div>
+
+        </td>
+
+        @*displays links to access different methods to alter each record*@
+        <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Details", "Details", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+        </td>
+
+    </tr>

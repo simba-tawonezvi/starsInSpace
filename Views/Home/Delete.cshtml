@@ -1,0 +1,33 @@
+﻿@model MVCStars.Models.Star
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<hr />
+<div class="box">
+    <div class="col-md-12 text-center">
+        <h3>Are you sure you want to delete this star?</h3>
+        <img src="@Model.ImageUrl" height="250" />
+        <h4>@Html.DisplayFor(m => m.Name)</h4>
+    </div>
+
+    @*button that confirms the deletion of the star*@
+    <div class="text-center">
+        @using (Html.BeginForm())
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-success" })
+        }
+
+        
+    </div>
+</div>
+<hr />
+
+@*links to edit and go back to the list*@
+<div class="text-center">
+    @Html.ActionLink("Back to list", "Index", null, new { @class = "btn btn-default btn-sm" }) |
+    @Html.ActionLink("Edit Record", "Edit", new { id = Model.Id }, new { @class = "btn btn-default btn-sm" })
+</div>

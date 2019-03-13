@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MVCStars.Models.Star>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Stars In Space</h2>
+
+<hr />
+<div class="row">
+
+    <div class="col-md-8 ">
+        @*creates a url for search query made by user*@
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            //adds a input area and a button to sumbit search
+            <div>
+                Type: @Html.DropDownList("StarType", "All")
+                Name: @Html.TextBox("searchString")
+                <input class="btn btn-default" type="submit" value="Search" />
+            </div>
+        }
+    </div>
+
+    <div class="col-md-4 text-right">
+        @*adds text for the link to add to the record.  Second parameter 
+            (create) is the action method the link will go to*@
+        @Html.ActionLink("Add a Star", "Create", null, new { @class = "btn btn-default" })
+    </div>
+
+</div>
+
+<hr />
+
+<table class="table">
+    @*column headings for table*@
+    <thead>
+    <tr class="table-header">
+        <th>Image</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Type)</th>
+        <th>Solar Mass</th>
+        <th>Ratings</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    @*table data*@
+    <tbody>
+    @foreach (var item in Model)
+    {
+        @Html.Action("_StarRowData", new { id = item.Id })
+    }
+    </tbody>
+</table>
+
